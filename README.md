@@ -12,6 +12,7 @@ Reinventing the wheel. This specific project focuses on collections.
   - Making something use*ful*
   - Making implementations from scratch -- wrappers around existing things is fine
   - Good names -- Things like `Iterable2` are fine
+  - Adding the "functional" methods (like `removeIf`)
 
 ## The standard collections API
 
@@ -22,6 +23,18 @@ For reference.
   - List
   - Queue -> Deque
 - Map (By itself)
+
+## Design
+
+- Do not allow nulls into the collection
+- Return `Optional` for nullable things
+- Avoid throwing exceptions if possible
+
+## Half-baked ideas
+
+It seems like `Sized` could be an interface (having `size()`, `isEmpty()`, and maybe `isFull()`) but
+see "The problem with capacity-restricted hierarchy" below for reasons why this might not work. I'll
+come back to this though.
 
 ## Contracts and methods
 
@@ -61,3 +74,13 @@ Technically, sure, but you didn't break anything.
 |---------------|----------------|-----------------|
 | Give capped   | Okay           | Errors          |
 | Give uncapped | Actually okay! | Okay            |
+
+### The "problem" with distinctness
+
+It's actually not a problem but I am visually showing that unique collections (like `Set`) should
+indeed extend from non-unique ones (like `Collection`).
+
+|                 | Expect unique | Expect duplicates |
+|-----------------|---------------|-------------------|
+| Give unique     | Okay          | Actually okay!    |
+| Give duplicates | Errors        | Okay              |

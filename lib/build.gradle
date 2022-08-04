@@ -3,7 +3,11 @@
  */
 
 plugins {
-    id 'com.example.greeter.java-library-conventions'
+    id 'com.jb4j.wheel.collections.java-library-conventions'
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.36'
 }
 
 // Temporarily
