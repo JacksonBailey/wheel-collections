@@ -8,5 +8,11 @@ public enum ConstraintViolated {
   /**
    * When adding a duplicate to a bag that does not accept duplicates
    */
-  UNIQUENESS
+  UNIQUENESS,
+  /**
+   * When adding somewhere logically "outside" of the bag
+   * <p>
+   * TODO This might be dumb
+   */
+  BOUNDARY
 }
